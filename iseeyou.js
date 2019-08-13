@@ -47,7 +47,8 @@ Module.register("iseeyou", {
         return;
 	},
     
-    showMsg: (texts, lag) => {
+    showMsg: function(texts, lag) {
+	console.log('@@@' + texts);
         this.container.innerHTML = '';
         for (let t of texts){
             let line = document.createElement("div");
