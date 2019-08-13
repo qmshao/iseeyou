@@ -58,8 +58,8 @@ Module.register("iseeyou", {
             line.appendChild(para);
             this.container.append(line);
         }    
-        setTimeout(() => container.style.height = "100%", 1);
-        setTimeout(() => container.style.height = "0%", lag?lag*1000:5000);
+        setTimeout(() => this.container.style.height = "100%", 1);
+        setTimeout(() => this.container.style.height = "0%", lag?lag*1000:5000);
     }
 
 });
