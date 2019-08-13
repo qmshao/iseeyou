@@ -24,6 +24,10 @@ Module.register("iseeyou", {
     // Define start sequence
     start: function() {
 
+        this.container = document.createElement("div");
+        this.container.setAttribute("class", "overlay");
+        this.container.style.height = "0%";
+        document.body.appendChild(this.container);
     },
 
     notificationReceived: function(notification, payload, sender) {
@@ -43,12 +47,8 @@ Module.register("iseeyou", {
         return;
 	},
     
-    showMsg: (texts) => {
-        let container = document.createElement("div");
-        container.setAttribute("class", "overlay");
-        container.style.height = "0%";
-        document.body.appendChild(container);
-
+    showMsg: (texts, lag) => {
+        this.container.innerHTML = '';
         for (let t of texts){
             let line = document.createElement("div");
             line.setAttribute("class", "overlay-content");
@@ -56,10 +56,10 @@ Module.register("iseeyou", {
             let content = document.createTextNode(t);
             para.appendChild(content);
             line.appendChild(para);
-            container.append(line);
+            this.container.append(line);
         }    
         setTimeout(() => container.style.height = "100%", 1);
-        setTimeout(() => container.style.height = "0%", 5000);
+        setTimeout(() => container.style.height = "0%", lag?lag*1000:5000);
     }
 
 });
